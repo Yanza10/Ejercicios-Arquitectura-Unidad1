@@ -1,0 +1,217 @@
+--- Ejercici 9 ----
+entity compuerta is
+    Port ( A,B : in  STD_LOGIC;
+           	C : out  STD_LOGIC);
+end compuerta;
+--- Ejercici 10 ----
+entity proyecto is
+    Port (P: in  STD_LOGIC_VECTOR (0 to 2);
+           A: in  STD_LOGIC_VECTOR (0 to 1);
+           X: inout  STD_LOGIC);
+end proyecto ;
+-----------------------------------------------
+
+Library ieee;
+use ieee.std_logic_ll64.all;
+entity Mux is
+port (E0,E1,E2,E3,S0,S1: in std_logic;
+                     F: out std_logic);
+end Mux;
+--------------------------------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Figura139 is
+port(a, b: in std_logic_vector (0 to 3); F: out std_logic);
+end Figura139;
+
+
+use work.gates.all;
+
+arquitecture estructural of Figura139 is
+signal x: std_logic_vector(0 to 3);
+begin
+U0: or2 port map (a(0),b(0), x(0));
+
+U1: or2 port map (a(1),b(1), x(1));
+
+U2: or2 port map (a(2),b(2), x(2));
+
+U3: and3 port map (x(0), x(1), x(2), x(3) F);
+
+end estructural;
+-----------------------------------------------
+Library ieee;
+	Use ieee.std_logic_1164.all;
+Entity Mux is
+Port (E,S: in bit_vector( 3 downto O);
+			F: out bit );
+End Mux;
+------------------------------------------------
+Library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity ejercicio is
+Port ( a : in STD_LOGIC;
+c : out STD_LOGIC);
+end lampara;
+architecture Funcional of ejercicio is
+begin
+c <= a;
+end Funcional;
+O
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+entity lamp_morse is 
+port( a: in STD_LOGIC; 
+	c: out STD_LOGIC);
+end lamp_morse;
+----------------------------------------------------
+architecture arq_lamp
+	of lamp_morse is begin
+	morse : process (a,c)
+begin
+		if a = ´1 ´then c <= `1`;
+			else c <= ´0`;
+		end if;
+	end process
+end arq_lamp;
+
+	--declaracion funcional motor
+	library IEEE;
+	use IEEE.STD_LOGIC_1164.all;
+	
+	entity motor is 
+	port( a,b: in STD_LOGIC; 
+			c: out STD_LOGIC); 
+			
+	end motor;
+	
+	architecture arq_motor of motor is 
+	begin
+			mo_tor : process (a,b,c) 
+	begin
+		if (a = ´1 ´ and b=`0`) then c <= `ror`;
+				else if (a=`0`and b=`1`) c <= ´rol`; 
+			end if;
+		end if;
+	end process
+	end arq_motor
+	
+--declaracion funcional panel de arroz
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+	entity panel_arroz is
+
+	port(a,b: in STD_LOGIC; 
+			c,d,e: out STD_LOGIC);
+		
+	end panel_arroz;
+	architecture arq_panel of panel_arroz	is 
+	begin
+		c <= `1` when (a= `1`and b=`0`and when a=`0`and b=`1`) else 
+		c <=`0`;
+		d <= `1` when (a= `0`and b= `0`) else
+		d<= `0`;
+		e <= `1` when (a= `0`and b= `0`) else
+		e<= `0`;
+	end arq_panel;
+
+--declaracion funcional robot
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+	entity robot1 is 
+	port(a,b,c,d: in STD_LOGIC;
+				e: out STD_LOGIC); 
+end robot1;
+architecture arq_robot1 of robot1 is 
+	begin
+	e<= `1` when (a= `1`and b=`1`and c=`1`and b=`1`) else
+	c <= `0;
+end arq_robot1;
+
+--estructural apagador 
+library IEEE;
+use IEEE.STD_LOGIC_1164.all; 
+
+entity apagador_escalera is 
+	port(a,b,: in STD_LOGIC; 
+			c: out STD_LOGIC);
+end apagador_escalera;
+
+use work.compuerta.all;
+architecture estructura of apagador_escalera is
+
+signal x: bit_vector (0 to 1);
+begin
+	U0: and2 port map (a, b, x(0));
+	U1: and2 port map (nota, b, x(1));
+	U2: or3 port map (x(0), x(1), c);
+End estructura;
+
+--Estructural funcionamiento motor 
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity motor is 
+	port( a,b,c,: in STD_LOGIC; 
+				y: out STD_LOGIC); 
+end motor;
+use work.compuerta.all; 
+
+architecture estructura of motor is 
+signal x: bit_vector (0 to 2);
+begin
+	U0: and2 port map (a, not b, x(0)); 
+	U1: and2 port map (not b, c, x(1)); 
+	U2: and2 port map (a, c, x(2));
+	U3: or3 port map (x(0), x(1), x(2), y);
+End estructura;
+
+
+entity entidad is  
+	port (a0, b0, a1, b1, a2, b2, a3, b3 : in STD_LOGIC
+												 F : out STD_LOGIC);
+end entidad;
+
+--declaracion entidad 
+	library IEEE;
+	use IEEE.STD_LOGIC_1164.all;
+	
+	entity entidad is 
+	port( a,b: in STD_LOGIC_VECTOR(0 to 3); 
+			f: out STD_LOGIC); 
+			
+	end entidad;
+	
+	architecture arq_entidad of entidad is 
+	begin
+		 process (a,b)  
+		 begin
+		if (((a(0) or  b (0)) = '0') or ((a(1) or b(1)) = '0') or ((a(2) or b(2)) = '0') or ((a(3) or b (3)) = '0') ) then
+			f <= '0';
+				else f <= '1';
+			end if;
+	end process
+	end arq_entidad;
+	
+	--declaracion entidad 
+	library IEEE;
+	use IEEE.STD_LOGIC_1164.all;
+	
+	entity expresion is 
+	port( A,B,C: in STD_LOGIC; 
+			F0,F1,F2,F3;: out STD_LOGIC); 
+			
+	end expresion;
+	
+	architecture arq_exp of entidad is 
+	begin
+	
+	F0 <= (A or B) and C;
+	F1 <= (A and C) or (C and B);
+	F2 <= B and C;
+	F3 <= A or C;
+		
+	end arq_exp;
+	
